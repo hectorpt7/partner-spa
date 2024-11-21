@@ -1,0 +1,77 @@
+{
+  "name": "partner-angular-ssr",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "pas",
+  "sourceRoot": "apps/partner-angular-ssr/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/partner-angular-ssr",
+        "index": "apps/partner-angular-ssr/src/index.html",
+        "browser": "apps/partner-angular-ssr/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/partner-angular-ssr/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/partner-angular-ssr/src/favicon.ico",
+          "apps/partner-angular-ssr/src/assets"
+        ],
+        "styles": ["apps/partner-angular-ssr/src/styles.scss"],
+        "scripts": [],
+        "server": "apps/partner-angular-ssr/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "apps/partner-angular-ssr/server.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "partner-angular-ssr:build:production"
+        },
+        "development": {
+          "buildTarget": "partner-angular-ssr:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "partner-angular-ssr:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
