@@ -21,7 +21,12 @@
           "apps/partner-angular-ssr/src/assets"
         ],
         "styles": ["apps/partner-angular-ssr/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "server": "apps/partner-angular-ssr/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "apps/partner-angular-ssr/server.ts"
+        }
       },
       "configurations": {
         "production": {

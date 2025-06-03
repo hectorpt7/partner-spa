@@ -1,0 +1,19 @@
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Widget from modal</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+    <div class="perch-widget" widget-id="29Jp6zyw">
+      <!-- Replace the inner content with custom loader -->
+      <div class="perch-widget-loading-indicator" style="text-align: center;">Loading...</div>
+    </div>
+	</div>
+</ng-template>
+
+<div class="perch-widget" widget-id="fdsBGm9d">
+  <!-- Replace the inner content with custom loader -->
+  <div class="perch-widget-loading-indicator" style="text-align: center;">Loading...</div>
+</div>
+
+<button class="btn btn-lg btn-primary" (click)="open(content)">Launch widget</button>
