@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'pa-route-one',
@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './route-one.component.html',
 })
 export class RouteOneComponent implements OnInit {
+  private readonly document = inject(DOCUMENT);
 
   ngOnInit(): void {
-    window.dispatchEvent(new CustomEvent('perch-widget:init'));
+    this.document.defaultView?.dispatchEvent(new CustomEvent('perch-widget:init'));
   }
 }
